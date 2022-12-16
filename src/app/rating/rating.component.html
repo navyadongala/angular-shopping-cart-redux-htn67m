@@ -1,0 +1,6 @@
+<mat-icon color="accent" *ngFor="let i of filledStars">star</mat-icon>
+<mat-icon color="accent" *ngIf="hasHalfStar; else emptyStar">star_half</mat-icon>
+<ng-template #emptyStar>
+  <mat-icon color="accent">star_border</mat-icon>
+</ng-template>
+<mat-icon color="accent" *ngFor="let i of emptyStars">star_border</mat-icon>

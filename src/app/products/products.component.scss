@@ -1,0 +1,36 @@
+mat-toolbar {
+  position: fixed;
+  z-index: 1;
+}
+
+#products {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding-top: 64px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.card {
+  padding: 1%;
+  flex-grow: 0;
+  flex-basis: 100%;
+  @media only screen and (min-width: 480px) {
+    flex-basis: 48%;
+  }
+  @media only screen and (min-width: 840px) {
+    flex-basis: 31.3%;
+  }
+}
+
+mat-card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+a .spacer {
+  padding: 0 .25rem;
+}

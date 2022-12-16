@@ -1,0 +1,50 @@
+<mat-toolbar class="mat-elevation-z2" color="primary">
+  <span>Products</span>
+
+  <span class="spacer"></span>
+
+  <app-theme-switcher></app-theme-switcher>
+
+  <a href="#" routerLink="/shopping-cart" mat-button matTooltip="Shopping Cart">
+    <span class="mat-body-strong">{{ cartTotal$ | async | currency: 'INR' }}</span>
+    <span class="spacer"></span>
+    <mat-icon
+      [matBadge]="cartCount$ | async"
+      [matBadgeHidden]="!(hasCartItems$ | async)"
+      matBadgeSize="small"
+      matBadgeColor="accent"
+      >shopping_cart</mat-icon
+    >
+  </a>
+</mat-toolbar>
+
+<section id="products">
+  <div class="card" *ngFor="let product of products$ | async">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+      </mat-card-header>
+
+      <img mat-card-image [src]="product.images?.medium" [alt]="product.name" src="" alt="" />
+
+      <mat-card-content>
+        <app-rating [value]="product.rating"></app-rating>
+        <span class="mat-body-strong">{{ product.price | currency: 'EUR' }}</span>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="addToCart($event, product)"
+          *ngIf="!(product.id | addedToCart: (productsInCart$ | async)); else remove"
+        >
+          ADD TO CART
+        </button>
+        <ng-template #remove>
+          <button mat-button color="warn" (click)="removeFromCart($event, product.id)">REMOVE FROM CART</button>
+        </ng-template>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+<mat-toolbar class="mat-elevation-z2" color="primary">
+	<a href="#" routerLink="/" mat-icon-button>
+		<mat-icon>arrow_back</mat-icon>
+	</a>
+	<span>Shopping Cart</span>
+
+	<span class="spacer"></span>
+
+	<app-theme-switcher></app-theme-switcher>
+</mat-toolbar>
+
+<section id="cart-items">
+	<mat-list>
+    <ng-container *ngFor="let product of products$ | async">
+      <mat-list-item>
+        <img [src]="product.images?.thumbnail" [alt]="product.name" src="" alt="" />
+        <div class="product-info">
+          <div class="product-name">
+            <h2>{{ product.name }}</h2>
+            <app-rating [value]="product.rating"></app-rating>
+          </div>
+          <div class="product-price">
+            <span class="mat-h2">{{ product.price | currency:'EUR' }}</span>
+            <button mat-icon-button color="warn" matTooltip="Remove from Cart" (click)="removeFromCart($event, product.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </ng-container>
+	</mat-list>
+</section>

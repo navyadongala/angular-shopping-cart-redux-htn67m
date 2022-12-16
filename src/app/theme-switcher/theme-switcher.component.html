@@ -1,0 +1,10 @@
+<ng-container *ngIf="isDarkTheme$ | async; else lightTheme">
+  <button mat-icon-button (click)="setLightTheme($event)" matTooltip="Light Theme">
+    <mat-icon>wb_sunny</mat-icon>
+  </button>
+</ng-container>
+<ng-template #lightTheme>
+  <button mat-icon-button (click)="setDarkTheme($event)" matTooltip="Dark Theme">
+    <mat-icon>brightness_3</mat-icon>
+  </button>
+</ng-template>
